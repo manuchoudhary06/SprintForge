@@ -1,5 +1,4 @@
 # SprintForge
-# SprintForge
 
 > Plan, Track, Collaborate, and Deliver — All in One Workspace.
 
