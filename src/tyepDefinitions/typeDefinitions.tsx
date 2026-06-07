@@ -1,3 +1,7 @@
+export type BodyProps = {
+  searchText: string;
+};
+
 export type Stat = {
   title: string;
   value: string;
@@ -6,6 +10,7 @@ export type Stat = {
 
 export type CardsProps = {
   statistics: Stat[];
+  searchText: string;
 };
 
 export type Product = {
@@ -48,4 +53,13 @@ export type Product = {
   };
   images: string[];
   thumbnail: string;
+};
+
+export type ProductCardsProps = {
+  searchText: string;
+};
+
+export type SearchBarProps = {
+  searchText: string;
+  setSearchText: React.Dispatch<React.SetStateAction<string>>;
 };

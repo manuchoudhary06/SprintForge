@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import type { Product } from '../tyepDefinitions/typeDefinitions';
-
 export const useCommonData = () => {
   const [productList, setProductList] = useState<Product[]>([]);
 

@@ -1,55 +1,55 @@
-import { Cookie, UserRoundPen } from 'lucide-react';
-import SearchBar from './SearchBar/SearchBar';
+import { Apple, ShoppingCart, UserRoundPen } from 'lucide-react';
+import { useMemo } from 'react';
+import { useCommonData } from '../commonData/commonData';
 
 const Header = () => {
-  const desserts = [
-    { id: 1, name: 'Cakes' },
-    { id: 2, name: 'Cookies' },
-    { id: 3, name: 'Shakes' },
-  ];
+  const productList = useCommonData();
+
+  const groupedProducts = useMemo(() => {
+    return productList?.reduce(
+      (acc, product) => {
+        if (!acc[product.category]) {
+          acc[product.category] = [];
+        }
+
+        acc[product.category].push(product);
+
+        return acc;
+      },
+      {} as Record<string, typeof productList>
+    );
+  }, [productList]);
+
   return (
-    <div className="flex justify-between items-center border border-gray-300 p-4 m-4">
-      <div className="flex justify-between ">
-        <div className="flex">
-          <h1 className="mr-4">
-            <Cookie />
-          </h1>
-          <ul className="flex justify-center">
-            <li>
-              <select name="dropdown1" id="options">
-                {desserts.map((dessert) => (
-                  <option key={dessert.id} value={dessert.id}>
-                    {dessert.name}
-                  </option>
-                ))}
-              </select>
-            </li>
-            <li>
-              <select name="dropdown1" id="options">
-                {desserts.map((dessert) => (
-                  <option key={dessert.id} value={dessert.id}>
-                    {dessert.name}
-                  </option>
-                ))}
-              </select>
-            </li>
-            <li>
-              <select name="dropdown1" id="options">
-                {desserts.map((dessert) => (
-                  <option key={dessert.id} value={dessert.id}>
-                    {dessert.name}
-                  </option>
-                ))}
-              </select>
-            </li>
-          </ul>
+    <header className="m-4 rounded-xl border border-gray-200 bg-white px-6 py-4 shadow-sm">
+      <div className="flex items-center justify-between">
+        {/* Left Section */}
+        <div className="flex items-center gap-6">
+          <Apple size={32} className="text-amber-600" />
+
+          {Object.entries(groupedProducts).map(([category, products]) => (
+            <select
+              key={category}
+              className="cursor-pointer border-none bg-transparent text-lg font-medium capitalize outline-none"
+            >
+              <option value="">{category}</option>
+
+              {products?.map((product) => (
+                <option key={product.id} value={product.id}>
+                  {product.title}
+                </option>
+              ))}
+            </select>
+          ))}
+        </div>
+
+        {/* Right Section */}
+        <div className="flex items-center gap-5">
+          <ShoppingCart className="cursor-pointer transition hover:scale-110" />
+          <UserRoundPen className="cursor-pointer transition hover:scale-110" />
         </div>
       </div>
-      <SearchBar />
-      <div>
-        <UserRoundPen />
-      </div>
-    </div>
+    </header>
   );
 };
 

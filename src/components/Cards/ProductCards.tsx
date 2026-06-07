@@ -1,10 +1,15 @@
 import { useCommonData } from '../../commonData/commonData';
-const ProductCards = () => {
+import type { ProductCardsProps } from './../../tyepDefinitions/typeDefinitions';
+const ProductCards = ({ searchText }: ProductCardsProps) => {
   const productList = useCommonData();
 
+  const filteredProducts = productList?.filter((product) =>
+    product.title.toLowerCase().includes(searchText.toLowerCase())
+  );
+
   return (
-    <div className="grid grid-cols-1 gap-6 p-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-      {productList.map((product) => (
+    <div className="grid grid-cols-1 gap-6 py-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      {filteredProducts.map((product) => (
         <div
           key={product.id}
           className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
