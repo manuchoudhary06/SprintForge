@@ -1,7 +1,9 @@
 import { Search } from 'lucide-react';
-import type { SearchBarProps } from '../../tyepDefinitions/typeDefinitions';
+import { useSearch } from '../../commonData/SearchContext';
 
-const SearchBar = ({ searchText, setSearchText }: SearchBarProps) => {
+const SearchBar = () => {
+  const { searchText, setSearchText } = useSearch();
+
   return (
     <div className="relative p-5">
       <Search
@@ -10,11 +12,11 @@ const SearchBar = ({ searchText, setSearchText }: SearchBarProps) => {
       />
 
       <input
-        onChange={(e) => setSearchText(e.target.value)}
         type="text"
-        placeholder="Search projects..."
-        className="w-[400px] rounded-md border border-gray-300 py-2 pl-10 pr-3 outline-none focus:border-blue-500"
         value={searchText}
+        onChange={(e) => setSearchText(e.target.value)}
+        placeholder="Search products..."
+        className="w-[400px] rounded-md border border-gray-300 py-2 pl-10 pr-3 outline-none focus:border-blue-500"
       />
     </div>
   );

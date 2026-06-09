@@ -13,7 +13,7 @@ const iconMap = {
 };
 
 import ProductCards from './ProductCards';
-const Cards = ({ statistics, searchText }: CardsProps) => {
+const Cards = ({ statistics }: CardsProps) => {
   return (
     <>
       <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
@@ -47,7 +47,7 @@ const Cards = ({ statistics, searchText }: CardsProps) => {
         })}
       </div>
 
-      <ProductCards searchText={searchText} />
+      <ProductCards />
     </>
   );
 };

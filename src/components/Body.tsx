@@ -1,6 +1,5 @@
 import Cards from './Cards/Cards';
-import type { BodyProps } from '../tyepDefinitions/typeDefinitions';
-const Body = ({ searchText }: BodyProps) => {
+const Body = () => {
   const stats = [
     {
       title: 'Today Orders',
@@ -23,10 +22,9 @@ const Body = ({ searchText }: BodyProps) => {
       change: 'Needs attention',
     },
   ];
-
   return (
     <div className="m-4">
-      <Cards statistics={stats} searchText={searchText} />
+      <Cards statistics={stats} />
     </div>
   );
 };

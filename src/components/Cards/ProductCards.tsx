@@ -1,7 +1,8 @@
 import { useCommonData } from '../../commonData/commonData';
-import type { ProductCardsProps } from './../../tyepDefinitions/typeDefinitions';
-const ProductCards = ({ searchText }: ProductCardsProps) => {
+import { useSearch } from '../../commonData/SearchContext';
+const ProductCards = () => {
   const productList = useCommonData();
+  const { searchText } = useSearch();
 
   const filteredProducts = productList?.filter((product) =>
     product.title.toLowerCase().includes(searchText.toLowerCase())
